@@ -1,0 +1,21 @@
+
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+*.tfvars
+*.tfvars.json
+
+# Sensitive data
+*.pem
+*.key
+*.crt
+
+# Editor and system files
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+.idea/
+.vscode/
