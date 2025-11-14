@@ -1,22 +1,61 @@
-# Technologies Used
+# Technologies – OCI Vault + Secrets Manager + IAM
 
-## 1. OCI Vault
-**What it is:** A managed key management service that allows secure storage and lifecycle management of encryption keys and secrets.
-**Why we use it:** Centralized management of sensitive credentials.
-**How it works:** It acts as a secure enclave for storing keys and secrets, protected via KMS.
+## OCI Vault (KMS)
+**What it is:**  
+Cloud-native key management service providing secure, non-exportable keys.
 
-## 2. OCI KMS Key
-**What it is:** Oracle's Key Management Service provides encryption key generation and lifecycle control.
-**Why we use it:** Required to encrypt secrets before storing in the Vault.
-**How it works:** Used with AES-256 or other algorithms to encrypt content.
+**Why used:**  
+To encrypt all secrets with strong, enterprise-grade key controls.
 
-## 3. OCI Secrets Manager
-**What it is:** Oracle's service to manage secrets like API tokens and DB passwords.
-**Why we use it:** To enable secure, centralized secret access with encryption.
-**How it works:** Uses a KMS key to encrypt BASE64-encoded content, stores in a vault.
+**How it works here:**  
+Keys created in the Vault encrypt secrets stored in OCI Secrets Manager.
 
-## 4. Terraform
-**What it is:** Infrastructure-as-Code tool for provisioning OCI resources.
-**Why we use it:** Ensures repeatability and version-controlled deployments.
-**How it works:** Declarative HCL syntax to define OCI infrastructure.
+---
+
+## OCI Secrets Manager
+**What it is:**  
+A managed service for storing credentials, tokens, and sensitive values.
+
+**Why used:**  
+Prevents hardcoding secrets, supports rotation, and integrates with IAM.
+
+**How it works here:**  
+Secrets are encrypted with Vault keys and retrieved securely at runtime.
+
+---
+
+## OCI IAM
+**What it is:**  
+Identity and policy system for controlling access to OCI resources.
+
+**Why used:**  
+Prevents unauthorized access to secrets and Vault operations.
+
+**How it works here:**  
+IAM groups, policies, and dynamic groups restrict read/rotate/admin rights.
+
+---
+
+## OCI Audit Logs
+**What it is:**  
+Cloud-native auditing for all API operations.
+
+**Why used:**  
+Ensures compliance, traceability, and forensic capability.
+
+**How it works here:**  
+Logs track secret retrieval, rotation, key creation, policy changes.
+
+---
+
+## Terraform (Optional Use)
+**What it is:**  
+Infrastructure-as-code tool.
+
+**Why used:**  
+Provides reproducible deployment, avoids misconfigurations.
+
+**How it works here:**  
+Defines Vault, Keys, Secrets, and IAM policies with version control.
+
 
