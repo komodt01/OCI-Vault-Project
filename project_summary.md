@@ -1,39 +1,24 @@
-# Project Summary: OCI Vault + Secrets Manager with Terraform
+# Project Summary – OCI Vault + Secrets Manager + IAM Policy Enforcement
 
-## Business Case
-In highly regulated environments like finance and healthcare, securely managing application secrets (API keys, passwords) is critical to preventing breaches and ensuring compliance. This project demonstrates how Oracle Cloud Infrastructure (OCI) Vault and Secrets Manager, deployed using Terraform, provide a scalable and automated solution to manage secrets securely.
+## 1. Purpose
+This project demonstrates how to secure sensitive application credentials in Oracle Cloud Infrastructure (OCI) using OCI Vault, Keys, Secrets Manager, and IAM policy controls. The design focuses on enforcing least privilege, protecting secret material, applying cryptographic best practices, and maintaining complete auditability for regulated environments.
 
-## Problem Statement
-Many enterprises hardcode secrets into source code or store them in configuration files, increasing the risk of compromise. The challenge is to securely store, rotate, and audit secrets access in cloud-native environments.
+## 2. Business Context
+Organizations must protect sensitive credentials such as database passwords, API keys, and tokens while maintaining compliance with frameworks like NIST 800-53, ISO 27001, PCI DSS, and HIPAA. This project provides a secure pattern for storing, rotating, and retrieving secrets in cloud-native applications deployed on OCI.
 
-## Project Definition
-Provision a vault, encryption key, and store a secret using OCI Vault and Secrets Manager via Terraform automation.
+## 3. High-Level Architecture
+- OCI Vault provides secure, non-exportable keys.
+- OCI Secrets Manager stores and encrypts credentials using Vault-managed keys.
+- IAM Policies restrict who can create, read, rotate, or manage secrets.
+- Audit Logs capture secret retrieval, rotation events, and administrative changes.
+- Applications retrieve secrets at runtime using IAM instance principals.
 
-## Goals
-- Automate secure vault and key provisioning using Terraform.
-- Store a secret value with encryption at rest and in transit.
-- Maintain infrastructure-as-code for repeatable deployments.
+## 4. Outcomes
+- Secure secret storage with strong encryption.
+- Enforced least privilege via IAM policy scoping.
+- Full audit traceability of all access and administrative operations.
+- A cloud-native, compliant, and production-ready secret governance pattern.
 
-## Resources Used
-- OCI Vault
-- OCI KMS Key
-- OCI Secrets Manager
-- Terraform
-- RSA keypair for authentication
-
-## Methodology
-1. Configure Terraform provider with OCI credentials.
-2. Define Terraform resources for vault, key, and secret.
-3. Run `terraform apply` to deploy all resources.
-4. Validate in the OCI Console.
-
-## Results
-- Vault and encryption key successfully provisioned.
-- Secret value securely stored with BASE64 encoding.
-- Automation ensures reproducibility and compliance.
-
-## Recommendations
-- Integrate secret access with IAM policies for fine-grained control.
-- Automate secret rotation using OCI Functions.
-- Extend project to include multi-region high availability.
+## 5. Skills Demonstrated
+OCI Vault · KMS · Secrets Manager · IAM · Encryption Key Management · Audit Logging · Access Control · Cloud Security Architecture · Compliance Mapping · Infrastructure Governance
 
